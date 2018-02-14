@@ -44,7 +44,7 @@ int ValueAt(int values[], int size, int index, bool &error){
             return 0;
         }
     }
-}
+}//comment
 
 
 int Sum(int values[], int size){
