@@ -1,0 +1,4 @@
+git config --global push.default simple
+git add lab01
+git commit -a -m 'My first file'
+git push --set-upstream origin master
