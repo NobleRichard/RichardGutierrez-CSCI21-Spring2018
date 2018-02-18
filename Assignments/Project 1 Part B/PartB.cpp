@@ -11,8 +11,8 @@ bool Luhns_Algorithm(string Num) {
     stringstream strluhn;
     int cardCheck = 0;
     
-    strluhn << Num;
-    strluhn >> cardCheck;
+    strluhn << Num; //moves string into stringstream
+    strluhn >> cardCheck;  //then from stringstream into int
     
     int Numarray[Num.size() - 1];
     

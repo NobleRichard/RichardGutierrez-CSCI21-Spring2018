@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 /*
 Your application will read in two sets of input data (2 input files).  The
@@ -98,12 +99,18 @@ class CreditCard{
     string GetLastName(){
         return lastname_;
     }
-    int GetMembership(){
+    string GetMembership(){
         return membership_;
     }
 };
+/*
+Gold Card
 
-class Transactions{
+Credit line $3,000
+Once limit is reached, the card will be blocked
+Each month, a rebate of 1% of the total monthly purchase is awarded to the account
+*/
+class Gold : public CreditCard{
   private:
     
     
@@ -112,6 +119,35 @@ class Transactions{
     
 
 };
+/*
+Platinum Card
 
+Credit line is $5,000
+An overdraft of $1,000 is allowed. A warning message is issued through the account summary
+Each month, a rebate of 2% of the total monthly purchase is awarded to the account
+*/
+class Platinum : public CreditCard{
+  private:
+    
+    
+  public:
+    
+    
 
+};
+/*
+Corporate Card
+
+Credit line of $10,000
+An overdraft of $5, 000 is allowed. A warning message is issued through the account summary
+Each month, a rebate of 5% of the total monthly purchase is awarded to the account. */
+class Corporate : public CreditCard{
+  private:
+    
+    
+  public:
+    
+    
+
+};
 
