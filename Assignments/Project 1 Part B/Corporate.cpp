@@ -1,10 +1,16 @@
-#include "PartB.h"
+#include "Corporate.h"
 
 
+Corporate::Corporate(double cred, double overd, double reb){
+    credit_ = cred;
+    overdraft_ = overd;
+    rebate_ = reb;
+}
 
 
-
-bool Luhns_Algorithm(string Num) {
+    //Card Checks
+    
+void Corporate::Luhns_Algorithm(string Num) {
     int x = 0;
     int z = 0;
     int digit = 0;
@@ -45,9 +51,12 @@ bool Luhns_Algorithm(string Num) {
     }
     cout <<"sum " << x << " then " << Numarray[Num.size() - 1] << endl;
     if((x % 10) == Numarray[Num.size() - 1]) {
-        return true;
+        
+        LuhnValid_ = true;
     }
     else{
-        return false;
+        
+        LuhnValid_ = false;
     }
 }
+
