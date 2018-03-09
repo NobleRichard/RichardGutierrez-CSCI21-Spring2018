@@ -12,6 +12,13 @@ class Platinum : public CreditCard{
     double credit_;
     double overdraft_;
     double rebate_;
+    long cardholder_;
+    string date_;
+    string store_;
+    double price_;
+    bool CreditCheck_;            //check1
+    bool CardTypeBalanceCheck_;   //check2
+    bool LuhnValid_;              //check3
     
   public:
     Platinum(double cred = 5000.0, double overd  = 1000.0, double reb  = .02);
@@ -24,11 +31,11 @@ class Platinum : public CreditCard{
     
     
     
-    bool Luhns_Algorithm(string Num);  //checks validity of credit card
+    void Luhns_Algorithm(string Num);  //checks validity of credit card
     
-    bool CheckCardBalance(string mem, double bal); //will check the balance and regarding which type it is 
+    void CheckCardBalance(string mem, double bal); //will check the balance and regarding which type it is 
     
-    bool CheckLimit(double lim, double cred);  //checks if transaction is too much
+    void CheckLimit(double lim, double cred);  //checks if transaction is too much
     
 
 };

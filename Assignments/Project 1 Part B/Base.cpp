@@ -1,3 +1,6 @@
+//Richard Gutierrez
+
+//Credit Card
 #include "Base.h"
 
     CreditCard::CreditCard(){
@@ -6,18 +9,13 @@
         lastname_ = "Doe";
         membership_ = "Gold";
         balance_ = 0;
-        LuhnValid_ = true;
-        CreditCheck_ = true;
-        CardTypeBalanceCheck_ = true;
     }
-    CreditCard::CreditCard(long num, string first, string last, string mem, bool x, bool y, bool z){ 
+    CreditCard::CreditCard(long num, string first, string last, string mem, double bal){ 
         cardnumber_ = num;
         firstname_ = first;
         lastname_ = last;
         membership_ = mem;
-        LuhnValid_ = x;
-        CreditCheck_ = y;
-        CardTypeBalanceCheck_ = z;
+        balance_ = bal;
     }
     void CreditCard::SetCardNumber(long num){
         cardnumber_ = num;
@@ -28,8 +26,11 @@
     void CreditCard::SetLastName(string last){
         lastname_ = last;
     }
-    void CreditCard::SetMembership(int mem){
+    void CreditCard::SetMembership(string mem){
         membership_ = mem;
+    }
+    void CreditCard::SetBalance(double bal){
+        balance_ = bal;
     }
     long CreditCard::GetCardNumber(){
         return cardnumber_;
@@ -43,15 +44,6 @@
     string CreditCard::GetMembership(){
         return membership_;
     }
-    
-    
-
-    
-
-void CreditCard::PrintDeclineStatus(){
-    
-    
-}
-
-
-
+    double CreditCard::GetBalance(){
+        return balance_;
+    }

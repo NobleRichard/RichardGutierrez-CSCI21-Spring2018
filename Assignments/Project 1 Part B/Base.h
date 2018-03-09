@@ -1,5 +1,9 @@
-#ifndef PARTB_H
-#define PARTB_H
+//Richard Gutierrez
+
+//Credit Card
+
+#ifndef BASE_H
+#define BASE_H
 
 #include <iostream>
 #include <iomanip>
@@ -9,6 +13,7 @@
 #include <cctype>
 #include <string>
 #include <vector>
+#include <sstream>
 
 /*
 Your application will read in two sets of input data (2 input files).  The
@@ -48,6 +53,7 @@ using std::vector;
 
 
 
+
 class CreditCard{
     protected:
     string firstname_;
@@ -55,9 +61,7 @@ class CreditCard{
     long cardnumber_;
     string membership_;   
     double balance_;
-    bool LuhnValid_;
-    bool CreditCheck_;
-    bool CardTypeBalanceCheck_;
+
     
     public:
     CreditCard();
@@ -66,13 +70,15 @@ class CreditCard{
     void SetCardNumber(long num);
     void SetFirstName(string first);
     void SetLastName(string last);
-    void SetMembership(int mem);
+    void SetMembership(string mem);
+    void SetBalance(double bal);
     
     long GetCardNumber();
     string GetFirstName();
     string GetLastName();
     string GetMembership();
+    double GetBalance();
+    
       
-    void PrintDeclineStatus();
 };
 #endif

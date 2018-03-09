@@ -1,36 +1,101 @@
 #include "Corporate.h"
 
-
-Corporate::Corporate(double cred, double overd, double reb){
-    credit_ = cred;
-    overdraft_ = overd;
-    rebate_ = reb;
+Corporate::Corporate(){
+    credit_ = 10000.0;
+    overdraft_ = 5000.0;
+    rebate_ = .05;
+    CreditCheck_ = true;
+    CardTypeBalanceCheck_ = true;
+    LuhnValid_ = true;
 }
 
 
+
+////////////////////////////////////////////////////////////////////////////
+//sets and gets
+    void Corporate::SetCredit(double cred){
+        credit_ = cred;
+    }
+    void Corporate::SetOverDraft(double over){
+        overdraft_ = over;
+    } 
+    void Corporate::SetRebate(double reb){
+        rebate_ = reb;
+    }
+    void Corporate::SetCardHolder(long holder){
+        cardholder_ = holder;
+    }
+    void Corporate::SetDate(string day){
+        date_ = day;
+    }
+    void Corporate::SetStore(string company){
+        store_ = company;
+    }
+    void Corporate::SetPrice(double prices){
+        price_ = prices;
+    }
+    void Corporate::SetCreditCheck(bool check1){
+        CreditCheck_ = check1;
+    }
+    void Corporate::SetCardType(bool check2){
+        CardTypeBalanceCheck_ = check2;
+    }
+    void Corporate::SetLuhns(bool check3){
+        LuhnValid_ = check3;
+    }
+    
+    double Corporate::GetCredit(){
+        return credit_;
+    }
+    double Corporate::GetOverDraft(){
+        return overdraft_;
+    }
+    double Corporate::GetRebate(){
+        return rebate_;
+    }
+    long Corporate::GetCardHolder(){
+        return cardholder_;
+    }
+    string Corporate::GetDate(){
+        return date_;
+    }
+    string Corporate::GetStore(){
+        return store_;
+    }
+    double Corporate::GetPrice(){
+        return price_;
+    }
+    bool Corporate::GetCardTypeBalCheck(){
+        return CreditCheck_;
+    }
+    bool Corporate::GetCardType(){
+        return CardTypeBalanceCheck_;
+    }
+    bool Corporate::GetLuhns(){
+        return LuhnValid_;
+    }
+
+///////////////////////////////////////////////////////////////////////////////////
     //Card Checks
     
-void Corporate::Luhns_Algorithm(string Num) {
+void Corporate::Luhns_Algorithm() {
     int x = 0;
     int z = 0;
     int digit = 0;
-    stringstream strluhn;
+    stringstream strluhn; 
     int cardCheck = 0;
     
-    strluhn << Num; //moves string into stringstream
-    strluhn >> cardCheck;  //then from stringstream into int
     
-    int Numarray[Num.size() - 1];
+    vector <long> Numarray(sizeof(cardnumber_));
     
-    x = (cardCheck % 2);
+    x = (cardnumber_ % 2);
     
-    for(int i = 0;i < Num.size();i++) {
-        Numarray[i] = (Num.at(i) - 48); 
+    for(int i = 0; i < sizeof(cardnumber_); i++) {
+        Numarray.at(i) = (sizeof(cardnumber_) - 48); 
     }
     
-    
-    for(int i = 0;i < (Num.size() - 1);i++) {
-        digit = Numarray[i];
+    for(int i = 0;i < sizeof(cardnumber_);i++) {
+        digit = Numarray.at(i);
         if(i % 2 == 0) {
             digit *= 2;
                 if(digit > 9) {
@@ -46,11 +111,11 @@ void Corporate::Luhns_Algorithm(string Num) {
         cout << digit << " " << endl;
     }
     x = x * 9;
-    for (int i = 0 ; i < Num.size(); i++){
-        cout << Numarray[i] << " ";
+    for (int i = 0 ; i < sizeof(cardnumber_); i++){
+        cout << Numarray.at(i) << " ";
     }
-    cout <<"sum " << x << " then " << Numarray[Num.size() - 1] << endl;
-    if((x % 10) == Numarray[Num.size() - 1]) {
+
+    if((x % 10) == Numarray.at(sizeof(cardnumber_))) {
         
         LuhnValid_ = true;
     }
