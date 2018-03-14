@@ -38,7 +38,6 @@ class Corporate : public CreditCard{
     CardTypeBalanceCheck_ = check2;
     LuhnValid_ = check3;
     
-    
         SetCardNumber(num);
         SetFirstName(first);
         SetLastName(last);
@@ -71,11 +70,11 @@ class Corporate : public CreditCard{
     
     
     
-    void Luhns_Algorithm();  //checks validity of credit card
+    bool Luhns_Algorithm(long num);  //checks validity of credit card
     
-    void CheckCardBalance(string mem, double bal); //will check the balance and regarding which type it is 
+    bool CheckCardBalance(double bal); //will check the balance and regarding which type it is 
     
-    void CheckLimit(double lim, double cred);  //checks if transaction is too much
+    bool CheckLimit(double bal, double price);  //checks if transaction is too much
     
 
 };

@@ -1,38 +1,101 @@
-//Richard Gutierrez
-
-//Credit Card
 #include "Platinum.h"
 
-
-
-Platinum::Platinum(double cred, double overd, double reb){
-    credit_ = cred;
-    overdraft_ = overd;
-    rebate_ = reb;
+Platinum::Platinum(){
+    credit_ = 5000.0;
+    overdraft_ = 1000.0;
+    rebate_ = .02;
+    CreditCheck_ = true;
+    CardTypeBalanceCheck_ = true;
+    LuhnValid_ = true;
 }
 
-//checks 
-    void Platinum::Luhns_Algorithm(string Num) {
+
+
+////////////////////////////////////////////////////////////////////////////
+//sets and gets
+    void Platinum::SetCredit(double cred){
+        credit_ = cred;
+    }
+    void Platinum::SetOverDraft(double over){
+        overdraft_ = over;
+    } 
+    void Platinum::SetRebate(double reb){
+        rebate_ = reb;
+    }
+    void Platinum::SetCardHolder(long holder){
+        cardholder_ = holder;
+    }
+    void Platinum::SetDate(string day){
+        date_ = day;
+    }
+    void Platinum::SetStore(string company){
+        store_ = company;
+    }
+    void Platinum::SetPrice(double prices){
+        price_ = prices;
+    }
+    void Platinum::SetCreditCheck(bool check1){
+        CreditCheck_ = check1;
+    }
+    void Platinum::SetCardType(bool check2){
+        CardTypeBalanceCheck_ = check2;
+    }
+    void Platinum::SetLuhns(bool check3){
+        LuhnValid_ = check3;
+    }
+    
+    double Platinum::GetCredit(){
+        return credit_;
+    }
+    double Platinum::GetOverDraft(){
+        return overdraft_;
+    }
+    double Platinum::GetRebate(){
+        return rebate_;
+    }
+    long Platinum::GetCardHolder(){
+        return cardholder_;
+    }
+    string Platinum::GetDate(){
+        return date_;
+    }
+    string Platinum::GetStore(){
+        return store_;
+    }
+    double Platinum::GetPrice(){
+        return price_;
+    }
+    bool Platinum::GetCardTypeBalCheck(){
+        return CreditCheck_;
+    }
+    bool Platinum::GetCardType(){
+        return CardTypeBalanceCheck_;
+    }
+    bool Platinum::GetLuhns(){
+        return LuhnValid_;
+    }
+
+///////////////////////////////////////////////////////////////////////////////////
+    //Card Checks
+    
+bool Platinum::Luhns_Algorithm(long num) {
     int x = 0;
     int z = 0;
     int digit = 0;
-    stringstream strluhn;
+    stringstream strluhn; 
     int cardCheck = 0;
     
-    strluhn << Num; //moves string into stringstream
-    strluhn >> cardCheck;  //then from stringstream into int
     
-    int Numarray[Num.size() - 1];
+    vector <long> Numarray(sizeof(cardnumber_));
     
-    x = (cardCheck % 2);
+    x = (cardnumber_ % 2);
     
-    for(int i = 0;i < Num.size();i++) {
-        Numarray[i] = (Num.at(i) - 48); 
+    for(int i = 0; i < sizeof(cardnumber_); i++) {
+        Numarray.at(i) = (sizeof(cardnumber_) - 48); 
     }
     
-    
-    for(int i = 0;i < (Num.size() - 1);i++) {
-        digit = Numarray[i];
+    for(int i = 0;i < sizeof(cardnumber_);i++) {
+        digit = Numarray.at(i);
         if(i % 2 == 0) {
             digit *= 2;
                 if(digit > 9) {
@@ -48,16 +111,34 @@ Platinum::Platinum(double cred, double overd, double reb){
         cout << digit << " " << endl;
     }
     x = x * 9;
-    for (int i = 0 ; i < Num.size(); i++){
-        cout << Numarray[i] << " ";
+    for (int i = 0 ; i < sizeof(cardnumber_); i++){
+        cout << Numarray.at(i) << " ";
     }
-    cout <<"sum " << x << " then " << Numarray[Num.size() - 1] << endl;
-    if((x % 10) == Numarray[Num.size() - 1]) {
+
+    if((x % 10) == Numarray.at(sizeof(cardnumber_))) {
         
-        LuhnValid_ = true;
+        return true;
     }
     else{
         
-        LuhnValid_ = false;
+        return false;
+    }
+}
+
+bool Platinum::CheckCardBalance(double bal){
+    if( bal < 5000.0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool Platinum::CheckLimit(double bal, double cred){  //checks if transaction is too much
+        if ( cred > bal ){
+        return false;
+    }
+    else{
+        return true;
     }
 }

@@ -78,7 +78,7 @@ Corporate::Corporate(){
 ///////////////////////////////////////////////////////////////////////////////////
     //Card Checks
     
-void Corporate::Luhns_Algorithm() {
+bool Corporate::Luhns_Algorithm(long num) {
     int x = 0;
     int z = 0;
     int digit = 0;
@@ -117,11 +117,28 @@ void Corporate::Luhns_Algorithm() {
 
     if((x % 10) == Numarray.at(sizeof(cardnumber_))) {
         
-        LuhnValid_ = true;
+        return true;
     }
     else{
         
-        LuhnValid_ = false;
+        return false;
     }
 }
 
+bool Corporate::CheckCardBalance(double bal){
+    if( bal < 10000.0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool Corporate::CheckLimit(double bal, double cred){  //checks if transaction is too much
+        if ( cred > bal ){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
