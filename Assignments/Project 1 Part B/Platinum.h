@@ -11,7 +11,7 @@ Each month, a rebate of 2% of the total monthly purchase is awarded to the accou
 */
 
 class Platinum : public CreditCard{
-  private:
+   private:
     double credit_;
     double overdraft_;
     double rebate_;
@@ -68,6 +68,7 @@ class Platinum : public CreditCard{
     bool GetCardType();
     bool GetLuhns();
     
+    double Transaction(double bal, double price, string stor, string date, int h); //Computes the transaction and assigns it to the  new balance
     
     
     bool Luhns_Algorithm(long num);  //checks validity of credit card
@@ -76,6 +77,11 @@ class Platinum : public CreditCard{
     
     bool CheckLimit(double bal, double price);  //checks if transaction is too much
     
-
+    void Output1(); //outputs the name, card number of person, and card type
+    
+    void Output2(); //outputs if a card didnt go through and for what reason
+    
+    void Output3(); //outputs rebate
+    
 };
 #endif

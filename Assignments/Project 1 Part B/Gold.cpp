@@ -79,50 +79,56 @@ Gold::Gold(){
     //Card Checks
     
 bool Gold::Luhns_Algorithm(long num) {
-    int x = 0;
-    int z = 0;
-    int digit = 0;
-    stringstream strluhn; 
-    int cardCheck = 0;
+    string numbers;
+    stringstream sup;
+    sup << num;
+    sup >> numbers;
     
+    vector<int> luhn(numbers.length());
     
-    vector <long> Numarray(sizeof(cardnumber_));
+    int sum = 0;
+    int data = 0;
+    int check = 0;
+    int tempx = numbers.length();
+    int tempLS = luhn.size();
     
-    x = (cardnumber_ % 2);
-    
-    for(int i = 0; i < sizeof(cardnumber_); i++) {
-        Numarray.at(i) = (sizeof(cardnumber_) - 48); 
+    for(int i = 0; i < tempx; ++i) {
+       luhn.at(i) = numbers.at(i) - 48;
+       
     }
     
-    for(int i = 0;i < sizeof(cardnumber_);i++) {
-        digit = Numarray.at(i);
-        if(i % 2 == 0) {
-            digit *= 2;
-                if(digit > 9) {
-                digit -= 9;
-                //x += digit;
-                }
-                else {
-                   // x+= digit;
-                    }
-                //x += digit;
+    for(int i = 0; i < tempLS; i++) {
+    }
+    
+    int parity = luhn.size();
+    
+    for(int i = luhn.size() - 2; i > -1;i--) {
+       
+        if(i % 2 == parity % 2) {
+            
+            data = luhn.at(i) * 2;
+            
+            if(data > 9) {
+                data = data - 9;
+            }
         }
-        x += digit;
-        cout << digit << " " << endl;
-    }
-    x = x * 9;
-    for (int i = 0 ; i < sizeof(cardnumber_); i++){
-        cout << Numarray.at(i) << " ";
-    }
-
-    if((x % 10) == Numarray.at(sizeof(cardnumber_))) {
+        else {
+            data = luhn.at(i);
+        }
         
+        
+        sum = sum + data;
+    }
+    check = (sum * 9) % 10;
+    int check2 = luhn.at(luhn.size()-1);
+    
+    
+    sum = sum % 10;
+    
+    if(check2 == check) {
         return true;
-    }
-    else{
-        
-        return false;
-    }
+    }   
+    else return false;
 }
 
 bool Gold::CheckCardBalance(double bal){ //will check the balance and regarding which type it is 
@@ -144,7 +150,7 @@ bool Gold::CheckLimit(double bal, double price){  //checks if transaction is too
 }
 
 double Gold::Transaction(double bal, double price, string stor, string date, int h){ //Computes the transaction and assigns it to the  new balance
-    cout << "Transaction processed: " << date << " " << "BY " << stor << endl;
+    cout << "Transaction processed: " << date << " " << "BY " << stor << " Transaction #" << h << endl;
     cout << "$" << bal << " - $" << price << " = $" << bal - price << endl;
     rebate_ = rebate_ + (price * .01);
     bal = bal - price;
@@ -154,24 +160,34 @@ double Gold::Transaction(double bal, double price, string stor, string date, int
 }
 
 void Gold::Output1(){
-    cout << GetFirstName() << " " << GetLastName() << " " << GetCardNumber() << " " << GetCardType() << endl;
+    cout << GetFirstName() << " " << GetLastName() << " " << GetCardNumber() << " " << GetMembership() << endl;
 }
 
 void Gold::Output2(){
-    if(LuhnValid_ != true){
-        cout << "Your Credit Card number is not a valid number. So no transactions went through." << endl;
+    if(LuhnValid_ != true ){
+        cout << "Your Credit Card number is not a valid number. Get a real card." << endl << endl;
+        if(CreditCheck_ != true){
+            cout << "Your account balance was not sufficient for a transaction." << endl << endl;
+            if(CardTypeBalanceCheck_ != true){
+                cout << "Your account had a problem with the balance and so no transactions were processed. Call your local bank for help."<< endl << endl;
+            }
+        }
     }
-    if(CreditCheck_ != true){
-        cout << "Your account balance was not sufficient for a transaction." << endl;
+    else if(CreditCheck_ != true){
+        cout << "Your account balance was not sufficient for a transaction." << endl << endl;
+        if(CardTypeBalanceCheck_ != true){
+            cout << "Your account had a problem with the balance and so no transactions were processed. Call your local bank for help."<< endl << endl;
+        }
+        
     }
-    if(CardTypeBalanceCheck_ != true){
-        cout << "Your account had a problem with the balance and so no transactions were processed. Call your local bank for help."<< endl;
+    else if(CardTypeBalanceCheck_ != true){
+        cout << "Your account had a problem with the balance and so no transactions were processed. Call your local bank for help."<< endl << endl;
     }
     else{
-        cout << "Congratulations on using your credit card wisely." << endl;
+        cout << endl << endl;
     }
 }
 
 void Gold::Output3(){
-    cout << "Your total rebate for this month is: $" << GetRebate();
+    cout << "Your total rebate for this month is: $" << GetRebate()<< endl;
 }

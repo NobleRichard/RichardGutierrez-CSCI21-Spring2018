@@ -79,10 +79,10 @@ class Gold : public CreditCard{
     
     bool CheckLimit(double bal, double price);  //checks if transaction is too much
     
-    void Output1();
+    void Output1(); //outputs the name, card number of person, and card type
     
-    void Output2();
+    void Output2(); //outputs if a card didnt go through and for what reason
     
-    void Output3(); 
+    void Output3(); //outputs rebate
 };
 #endif
